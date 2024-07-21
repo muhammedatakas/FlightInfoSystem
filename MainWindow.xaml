@@ -1,0 +1,40 @@
+﻿<Window x:Class="FlightInfoSystem.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FlightInfoSystem"
+        mc:Ignorable="d"
+        Title="Flight Information System" Height="450" Width="800">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <Grid>
+                <TextBox x:Name="TxtFlightNumber" Width="200" Margin="10"
+                         VerticalContentAlignment="Center"
+                         Background="Transparent"/>
+                <Label Content="Enter Flight Number" IsHitTestVisible="False"
+                       Foreground="Gray" Margin="10,0,0,0"
+                       Visibility="{Binding ElementName=TxtFlightNumber, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=True}"/>
+            </Grid>
+            <Button Content="Search" Click="BtnSearch_Click" Margin="10"/>
+        </StackPanel>
+        <ListView x:Name="FlightInfoList" Grid.Row="1" ItemsSource="{Binding Flights}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Flight Number" DisplayMemberBinding="{Binding Flight_Info.Number}" Width="100"/>
+                    <GridViewColumn Header="Airline" DisplayMemberBinding="{Binding Airline.Name}" Width="100"/>
+                    <GridViewColumn Header="Departure" DisplayMemberBinding="{Binding Departure.Airport}" Width="200"/>
+                    <GridViewColumn Header="Arrival" DisplayMemberBinding="{Binding Arrival.Airport}" Width="200"/>
+                    <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Flight_status}" Width="100"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Window>
