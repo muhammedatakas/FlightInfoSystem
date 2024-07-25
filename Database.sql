@@ -1,0 +1,10 @@
+USE Logins
+
+CREATE TABLE ManualFlights (
+    Id INT PRIMARY KEY IDENTITY,
+    FlightNumber NVARCHAR(20) NOT NULL,
+    Airline NVARCHAR(50) NOT NULL,
+    Departure NVARCHAR(50) NOT NULL,
+    Arrival NVARCHAR(50) NOT NULL,
+    Status NVARCHAR(20) NOT NULL
+);

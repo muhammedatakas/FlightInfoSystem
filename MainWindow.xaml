@@ -23,7 +23,9 @@
                        Foreground="Gray" Margin="10,0,0,0"
                        Visibility="{Binding ElementName=TxtFlightNumber, Path=Text.IsEmpty, Converter={StaticResource BooleanToVisibilityConverter}, ConverterParameter=True}"/>
             </Grid>
+            
             <Button Content="Search" Click="BtnSearch_Click" Margin="10"/>
+            <Button Content="Manage Manual Flights" Click="ManageManualFlights_Click" Margin="10"/>
         </StackPanel>
         <ListView x:Name="FlightInfoList" Grid.Row="1" ItemsSource="{Binding Flights}">
             <ListView.View>

@@ -7,10 +7,16 @@ using FlightInfoSystem.Services;
 
 namespace FlightInfoSystem.Views
 {
+    /// <summary>
+    /// Represents the login view of the application.
+    /// </summary>
     public partial class LoginView : Window
     {
         private readonly AuthService _authService;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LoginView"/> class.
+        /// </summary>
         public LoginView()
         {
             InitializeComponent();
@@ -21,6 +27,9 @@ namespace FlightInfoSystem.Views
             PasswordInputField.Foreground = new SolidColorBrush(Colors.Gray);
         }
 
+        /// <summary>
+        /// Handles the click event of the LoginButton.
+        /// </summary>
         private async void LoginButton_Click(object sender, RoutedEventArgs e)
         {
             string username = InputField.Text;
@@ -44,6 +53,9 @@ namespace FlightInfoSystem.Views
             }
         }
 
+        /// <summary>
+        /// Handles the click event of the RegisterButton.
+        /// </summary>
         private async void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
             string username = InputField.Text;
@@ -60,6 +72,9 @@ namespace FlightInfoSystem.Views
             }
         }
 
+        /// <summary>
+        /// Opens the main window of the application.
+        /// </summary>
         private void OpenMainWindow()
         {
             try
@@ -74,11 +89,21 @@ namespace FlightInfoSystem.Views
             }
         }
 
+        /// <summary>
+        /// Shows a message box with the specified message and caption.
+        /// </summary>
+        /// <param name="message">The message to display.</param>
+        /// <param name="caption">The caption of the message box.</param>
         private void ShowMessage(string message, string caption)
         {
             MessageBox.Show(message, caption, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
+        /// <summary>
+        /// Handles an error by logging it and displaying an error message box.
+        /// </summary>
+        /// <param name="ex">The exception that occurred.</param>
+        /// <param name="context">The context in which the error occurred.</param>
         private void HandleError(Exception ex, string context)
         {
             if (ex != null)
@@ -88,6 +113,9 @@ namespace FlightInfoSystem.Views
             }
         }
 
+        /// <summary>
+        /// Handles the GotFocus event of the PasswordInputField.
+        /// </summary>
         private void PasswordInputField_GotFocus(object sender, RoutedEventArgs e)
         {
             if (PasswordInputField.Password == "Enter Password")
@@ -97,6 +125,9 @@ namespace FlightInfoSystem.Views
             }
         }
 
+        /// <summary>
+        /// Handles the LostFocus event of the PasswordInputField.
+        /// </summary>
         private void PasswordInputField_LostFocus(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrEmpty(PasswordInputField.Password))

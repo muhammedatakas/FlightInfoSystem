@@ -1,0 +1,81 @@
+<Window x:Class="FlightInfoSystem.Views.ManualFlightView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FlightInfoSystem.Views"
+        xmlns:viewModel="clr-namespace:FlightInfoSystem.ViewModels"
+        mc:Ignorable="d"
+        Title="Manage Manual Flights" Height="450" Width="800">
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        
+        <!-- Flight Info Input Section -->
+        <StackPanel Grid.Row="0" Grid.Column="0" Margin="10" HorizontalAlignment="Left">
+            <TextBox x:Name="FlightNumberTextBox" Width="150" Margin="5" VerticalContentAlignment="Center" Background="Transparent" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Tag="Flight Number"/>
+            <TextBox x:Name="AirlineTextBox" Width="150" Margin="5" VerticalContentAlignment="Center" Background="Transparent" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Tag="Airline"/>
+            <TextBox x:Name="DepartureTextBox" Width="150" Margin="5" VerticalContentAlignment="Center" Background="Transparent" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Tag="Departure"/>
+            <TextBox x:Name="ArrivalTextBox" Width="150" Margin="5" VerticalContentAlignment="Center" Background="Transparent" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Tag="Arrival"/>
+            <TextBox x:Name="StatusTextBox" Width="150" Margin="5" VerticalContentAlignment="Center" Background="Transparent" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" Tag="Status"/>
+            <Button Content="Add Flight" Click="AddFlightButton_Click" Margin="5" Width="150"/>
+        </StackPanel>
+
+        <!-- Future Feature Placeholder -->
+        <StackPanel Grid.Row="0" Grid.Column="1" Margin="10" HorizontalAlignment="Right">
+    <Label Content="Search..." Foreground="Gray" IsHitTestVisible="False" HorizontalAlignment="Left" Margin="5,0,0,0"/>
+    <TextBox x:Name="SearchTextBox" Width="150" Margin="5" VerticalContentAlignment="Center" Background="Transparent"/>
+    <ComboBox x:Name="SearchCriteriaComboBox" Width="150" Margin="5">
+        <ComboBoxItem Content="Flight Number"/>
+        <ComboBoxItem Content="Airline"/>
+        <ComboBoxItem Content="Departure"/>
+        <ComboBoxItem Content="Arrival"/>
+        <ComboBoxItem Content="Status"/>
+    </ComboBox>
+    <Button Content="Search" Click="SearchButton_Click" Margin="5" Width="150"/>
+</StackPanel>
+
+        <!-- Flight List Section -->
+        <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <!-- Headers -->
+            <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Left">
+                <TextBlock Text="Flight Number" Width="100" FontWeight="Bold"/>
+                <TextBlock Text="Airline" Width="100" FontWeight="Bold"/>
+                <TextBlock Text="Departure" Width="100" FontWeight="Bold"/>
+                <TextBlock Text="Arrival" Width="100" FontWeight="Bold"/>
+                <TextBlock Text="Status" Width="100" FontWeight="Bold"/>
+                <TextBlock Text="Action" Width="75" FontWeight="Bold"/>
+            </StackPanel>
+
+            <!-- Flight List with Slider -->
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                <ListBox ItemsSource="{Binding ManualFlights}" SelectedItem="{Binding SelectedManualFlight}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding FlightNumber}" Width="100"/>
+                                <TextBlock Text="{Binding Airline}" Width="100"/>
+                                <TextBlock Text="{Binding Departure}" Width="100"/>
+                                <TextBlock Text="{Binding Arrival}" Width="100"/>
+                                <TextBlock Text="{Binding Status}" Width="100"/>
+                                <Button Content="Edit" Click="UpdateFlightButton_Click" Tag="{Binding Id}" Width="75"/>
+                                <Button Content="Delete" Click="DeleteFlightButton_Click" Tag="{Binding Id}" Width="75"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Window>

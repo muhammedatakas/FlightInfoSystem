@@ -2,8 +2,9 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:FlightInfoSystem"
+             xmlns:converters="clr-namespace:FlightInfoSystem.Converters"
              >
     <Application.Resources>
-         
+        <converters:EmptyTextToVisibilityConverter x:Key="EmptyTextToVisibilityConverter"/>
     </Application.Resources>
 </Application>

@@ -1,8 +1,10 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
-using FlightInfoSystem.ViewModels;
 using System.Windows.Media;
-using System;
+using FlightInfoSystem.ViewModels;
+using FlightInfoSystem.Views;
+
 namespace FlightInfoSystem
 {
     public partial class MainWindow : Window
@@ -15,8 +17,8 @@ namespace FlightInfoSystem
             _viewModel = new MainViewModel();
             DataContext = _viewModel;
         }
-        
 
+        // Event handler for the search button click
         private async void BtnSearch_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -35,7 +37,7 @@ namespace FlightInfoSystem
             }
         }
 
-
+        // Event handler for the flight number text changed
         private void TxtFlightNumber_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (TxtFlightNumber.Text == "Enter Flight Number" && TxtFlightNumber.IsKeyboardFocused)
@@ -48,6 +50,13 @@ namespace FlightInfoSystem
                 TxtFlightNumber.Text = "Enter Flight Number";
                 TxtFlightNumber.Foreground = new SolidColorBrush(Colors.Gray);
             }
+        }
+
+        // Event handler for the "Manage Manual Flights" button click
+        private void ManageManualFlights_Click(object sender, RoutedEventArgs e)
+        {
+            var manualFlightView = new ManualFlightView();
+            manualFlightView.Show();
         }
     }
 }
