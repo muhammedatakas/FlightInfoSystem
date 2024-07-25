@@ -21,7 +21,7 @@ namespace FlightInfoSystem.Services
         public FlightService()
         {
             _httpClient = new HttpClient();
-            _apiKey = "0ee79c5412f79c0adb316826a282de71"; // Consider moving this to a configuration file
+            _apiKey = "your-api"; // Change this with your personel api from https://aviationstack.com 
         }
 
         /// <summary>
